@@ -42,7 +42,7 @@ router.get('/', function (req, res, next) {
                 yTitle: 'Pem'
             },
             {
-                title: '  ДИНАМИКА ВВОДОВ ОСНОВНЫХ ФОНДОВ в сопоставимых ценах 1995 года',
+                title: 'ДИНАМИКА ВВОДОВ ОСНОВНЫХ ФОНДОВ в сопоставимых ценах 1995 года',
                 x: worksheet.worksheets[0].getColumn('AB').values,
                 y: worksheet.worksheets[0].getColumn('AC').values,
                 borderColor: '#40E0D0',
@@ -60,7 +60,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: '  ДИНАМИКА  ГОДОВЫХ ТЕМПОВ ИНВЕСТИЦИЙ В ОСНОВНОЙ КАПИТАЛ',
+                title: 'ДИНАМИКА ГОДОВЫХ ТЕМПОВ ИНВЕСТИЦИЙ В ОСНОВНОЙ КАПИТАЛ',
                 x: worksheet.worksheets[0].getColumn('AO').values,
                 y: worksheet.worksheets[0].getColumn('AP').values,
                 borderColor: '#8B4513',
@@ -69,7 +69,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: '  ДИНАМИКА  БАЗИСНЫХ ТЕМПОВ ИНВЕСТИЦИЙ В ОСНОВНОЙ КАПИТАЛ',
+                title: 'ДИНАМИКА БАЗИСНЫХ ТЕМПОВ ИНВЕСТИЦИЙ В ОСНОВНОЙ КАПИТАЛ',
                 x: worksheet.worksheets[0].getColumn('AU').values,
                 y: worksheet.worksheets[0].getColumn('AV').values,
                 borderColor: '#9ACD32',
@@ -78,7 +78,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ГОДОВОГО ТЕМПА ИМПОРТА',
+                title: 'ДИНАМИКА ГОДОВОГО ТЕМПА ИМПОРТА',
                 x: worksheet.worksheets[0].getColumn('BA').values,
                 y: worksheet.worksheets[0].getColumn('BB').values,
                 borderColor: '#FF1493',
@@ -114,7 +114,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ДОМАШНИХ ХОЗЯЙСТВ',
+                title: 'ДИНАМИКА ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ДОМАШНИХ ХОЗЯЙСТВ',
                 x: worksheet.worksheets[0].getColumn('CA').values,
                 y: worksheet.worksheets[0].getColumn('CB').values,
                 borderColor: '#808000',
@@ -123,7 +123,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  БАЗИСНЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ДОМАШНИХ ХОЗЯЙСТВ',
+                title: 'ДИНАМИКА БАЗИСНЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ДОМАШНИХ ХОЗЯЙСТВ',
                 x: worksheet.worksheets[0].getColumn('CG').values,
                 y: worksheet.worksheets[0].getColumn('CH').values,
                 borderColor: '#20B2AA',
@@ -132,7 +132,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ЧИСЛЕННОСТИ ЗАНЯТЫХ И БЕЗРАБОТНЫХ (млн чел)',
+                title: 'ДИНАМИКА ЧИСЛЕННОСТИ ЗАНЯТЫХ И БЕЗРАБОТНЫХ (млн чел)',
                 x: worksheet.worksheets[0].getColumn('CN').values,
                 y: worksheet.worksheets[0].getColumn('CO').values,
                 borderColor: '#C71585',
@@ -168,7 +168,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ГОСУДАРСТВА',
+                title: 'ДИНАМИКА ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ГОСУДАРСТВА',
                 x: worksheet.worksheets[0].getColumn('DP').values,
                 y: worksheet.worksheets[0].getColumn('DQ').values,
                 borderColor: '#00CED1',
@@ -177,7 +177,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  БАЗИСНОГО ТЕМПА КОНЕЧНОГО ПОТРЕБЛЕНИЯ ГОСУДАРСТВА',
+                title: 'ДИНАМИКА БАЗИСНОГО ТЕМПА КОНЕЧНОГО ПОТРЕБЛЕНИЯ ГОСУДАРСТВА',
                 x: worksheet.worksheets[0].getColumn('DV').values,
                 y: worksheet.worksheets[0].getColumn('DW').values,
                 borderColor: '#800000',
@@ -186,7 +186,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ГОДОВОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
+                title: 'ДИНАМИКА ГОДОВОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
                 x: worksheet.worksheets[0].getColumn('EB').values,
                 y: worksheet.worksheets[0].getColumn('EC').values,
                 borderColor: '#808000',
@@ -213,7 +213,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  БАЗИСНОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
+                title: 'ДИНАМИКА БАЗИСНОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
                 x: worksheet.worksheets[0].getColumn('EU').values,
                 y: worksheet.worksheets[0].getColumn('EV').values,
                 borderColor: '#FFD700',
@@ -222,7 +222,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ НКО',
+                title: 'ДИНАМИКА ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ НКО',
                 x: worksheet.worksheets[0].getColumn('FA').values,
                 y: worksheet.worksheets[0].getColumn('FB').values,
                 borderColor: '#8B0000',
@@ -231,7 +231,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  БАЗИСНОГО ТЕМПА КОНЕЧНОГО ПОТРЕБЛЕНИЯ НКО',
+                title: 'ДИНАМИКА БАЗИСНОГО ТЕМПА КОНЕЧНОГО ПОТРЕБЛЕНИЯ НКО',
                 x: worksheet.worksheets[0].getColumn('FH').values,
                 y: worksheet.worksheets[0].getColumn('FI').values,
                 borderColor: '#00FFFF',
@@ -240,7 +240,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  ГОДОВОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
+                title: 'ДИНАМИКА ГОДОВОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
                 x: worksheet.worksheets[0].getColumn('FN').values,
                 y: worksheet.worksheets[0].getColumn('FO').values,
                 borderColor: '#D2691E',
@@ -267,7 +267,7 @@ router.get('/', function (req, res, next) {
             },
 
             {
-                title: 'ДИНАМИКА  БАЗИСНОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
+                title: 'ДИНАМИКА БАЗИСНОГО ТЕМПА ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
                 x: worksheet.worksheets[0].getColumn('GG').values,
                 y: worksheet.worksheets[0].getColumn('GH').values,
                 borderColor: '#FF0000',

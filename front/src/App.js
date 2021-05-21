@@ -1,55 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
-import axios from 'axios';
-import { Line } from 'react-chartjs-2';
+import { BrowserRouter as Router } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import { createMuiTheme } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import Body from './routes/Body';
+import SideBar from './routes/SideBar';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 function App() {
-    const [val, setVal] = useState([]);
-
-    useEffect(async () => {
-        const response = await axios.get('/api/users');
-        setVal(response.data.data);
-    }, []);
-
-    console.log(val);
+    const theme = createMuiTheme();
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            {val.map((v) => {
-                const labels = v.x.slice(6);
-                const data = {
-                    labels: labels,
-                    datasets: [{
-                        label: v.title,
-                        data: v.y.slice(6),
-                        fill: false,
-                        borderColor: v.borderColor,
-                        tension: 0.1
-                    }]
-                };
+        <ThemeProvider theme={theme}>
+            <div>
+                <CssBaseline/>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="body1">ДИСПЕТЧЕР МОДЕЛИ Р1-4-0</Typography>
+                    </Toolbar>
+                </AppBar>
 
-                return (
-                    <div key={v.title} style={{width: 900, height: 400}}>
-                        <Line
-                            data={data}
-                            options={{
-                                scales: {
-                                    x: {
-                                        title: {color: '#6495ED', display: true, text: v.xTitle}
-                                    },
-                                    y: {
-                                        title: {color: '#6495ED', display: true, text: v.yTitle}
-                                    }
-                                }
-                            }}
-                            width={400}
-                            height={150}
-                        />
-                    </div>
-                )
-            })
-            }
-        </div>
+                <Container maxWidth="lg" style={{ marginTop: 16 }}>
+                    <Box display="flex">
+                        <Router>
+                            <SideBar/>
+                            <Body/>
+                        </Router>
+                    </Box>
+                </Container>
+            </div>
+        </ThemeProvider>
     );
 }
 
