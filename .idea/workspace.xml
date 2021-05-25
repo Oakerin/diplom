@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49e0bf5a-b138-45de-818a-585eb5ae8301" name="Default Changelist" comment="" />
+    <list default="true" id="49e0bf5a-b138-45de-818a-585eb5ae8301" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/front/src/routes/Articles" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/front/src/routes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,7 +55,7 @@
       <recent name="C:\Users\oaker\WebstormProjects\diplom_dashs" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="npm.start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -111,6 +113,7 @@
       <workItem from="1621151034620" duration="4480000" />
       <workItem from="1621525155035" duration="616000" />
       <workItem from="1621617633136" duration="10330000" />
+      <workItem from="1621978734378" duration="1208000" />
     </task>
     <servers />
   </component>
@@ -122,26 +125,26 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1061" y="443" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1621627581341" />
-    <state width="2539" height="396" key="GridCell.Tab.0.bottom" timestamp="1621975434183">
+    <state width="2539" height="396" key="GridCell.Tab.0.bottom" timestamp="1621979910665">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="396" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1621633748179" />
-    <state width="2539" height="396" key="GridCell.Tab.0.bottom/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621975434183" />
-    <state width="2539" height="396" key="GridCell.Tab.0.center" timestamp="1621975434183">
+    <state width="2539" height="396" key="GridCell.Tab.0.bottom/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621979910665" />
+    <state width="2539" height="396" key="GridCell.Tab.0.center" timestamp="1621979910664">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="396" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1621633748179" />
-    <state width="2539" height="396" key="GridCell.Tab.0.center/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621975434183" />
-    <state width="2539" height="396" key="GridCell.Tab.0.left" timestamp="1621975434182">
+    <state width="2539" height="396" key="GridCell.Tab.0.center/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621979910664" />
+    <state width="2539" height="396" key="GridCell.Tab.0.left" timestamp="1621979910664">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="396" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1621633748179" />
-    <state width="2539" height="396" key="GridCell.Tab.0.left/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621975434182" />
-    <state width="2539" height="396" key="GridCell.Tab.0.right" timestamp="1621975434183">
+    <state width="2539" height="396" key="GridCell.Tab.0.left/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621979910664" />
+    <state width="2539" height="396" key="GridCell.Tab.0.right" timestamp="1621979910665">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="396" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1621633748179" />
-    <state width="2539" height="396" key="GridCell.Tab.0.right/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621975434183" />
+    <state width="2539" height="396" key="GridCell.Tab.0.right/3840.0.1202.616/0.0.2560.1400@0.0.2560.1400" timestamp="1621979910665" />
     <state x="782" y="343" key="SettingsEditor" timestamp="1620821496733">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

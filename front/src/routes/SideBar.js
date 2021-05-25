@@ -9,7 +9,7 @@ const routes = [
     {
         name: 'Текстовое описание модели',
         to: function () {
-            return {pathname: ''}
+            return {pathname: '/model'}
         }
     },
     {
