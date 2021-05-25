@@ -1,13 +1,10 @@
 import React from 'react';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Scenarios from './Scenarios';
 import Charts from './Charts';
 import Paper from '@material-ui/core/Paper';
 
 function Body() {
-    const location = useLocation();
-    console.log(location);
-
     return (
         <Paper style={{width: '100%', padding: 16}}>
             <Switch>
@@ -17,11 +14,11 @@ function Body() {
                 <Route path="/charts">
                     <Charts/>
                 </Route>
-                <Route path="/scenarios">
+                <Route path="/scenarios/:scenarioId">
                     <Scenarios/>
                 </Route>
                 <Route path="/">
-                    <Scenarios/>
+                    <Redirect to="/scenarios/list" />
                 </Route>
             </Switch>
         </Paper>

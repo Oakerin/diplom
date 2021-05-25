@@ -33,7 +33,7 @@ const routes = [
     {
         name: 'Архив сценариев исходных данных опорной траектории',
         to: function () {
-            return {pathname: '/scenarios'}
+            return {pathname: '/scenarios/index'}
         }
     },
     {

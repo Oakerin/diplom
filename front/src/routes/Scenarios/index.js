@@ -6,7 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { Link as RouteLink } from 'react-router-dom';
+import { Link as RouteLink, useParams, useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
 const links = [
@@ -101,17 +101,18 @@ const links = [
 ];
 
 function Scenarios() {
-    const [expanded, setExpanded] = React.useState(false);
-    const handleChange = (i) => (event, isExpanded) => {
-        setExpanded(isExpanded ? i : false);
-    };
+    const { scenarioId } = useParams();
+    const history = useHistory();
 
+    const handleChange = (index) => (event, isExpanded) => {
+        history.push(`/scenarios/${isExpanded ? index : 'list'}`);
+    };
 
     return (
         <Box>
             <Typography variant="h5" gutterBottom>Архив сценариев исходных данных опорной траектории</Typography>
             {links.map((link, i) => (
-                <Accordion key={link.name} expanded={expanded === i} onChange={handleChange(i)}>
+                <Accordion key={i} expanded={+scenarioId === i} onChange={handleChange(i)}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon/>}
                         aria-controls="panel1bh-content"
@@ -123,7 +124,7 @@ function Scenarios() {
                         <Box display="flex" flexDirection="column">
                             {link.links.map(link => {
                                 return (
-                                    <Box display="flex" alignItems="flex-start">
+                                    <Box key={link.name} display="flex" alignItems="flex-start">
                                         <NavigateNextIcon fontSize="small"/>
                                         <Link component={RouteLink} to={link.to}>{link.name}</Link>
                                     </Box>
