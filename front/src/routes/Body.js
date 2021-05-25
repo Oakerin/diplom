@@ -21,7 +21,7 @@ function Body() {
                     <Scenarios/>
                 </Route>
                 <Route path="/">
-                    <div>3</div>
+                    <Scenarios/>
                 </Route>
             </Switch>
         </Paper>
