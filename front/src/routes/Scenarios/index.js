@@ -126,7 +126,7 @@ function Scenarios() {
                                 return (
                                     <Box key={link.name} display="flex" alignItems="flex-start">
                                         <NavigateNextIcon fontSize="small"/>
-                                        <Link component={RouteLink} to={link.to}>{link.name}</Link>
+                                        <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
                                     </Box>
                                 )
                             })}

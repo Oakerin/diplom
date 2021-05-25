@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Scenarios from './Scenarios';
 import Charts from './Charts';
 import Paper from '@material-ui/core/Paper';
+import Articles from './Articles';
 
 function Body() {
     return (
@@ -13,6 +14,9 @@ function Body() {
                 </Route>
                 <Route path="/charts">
                     <Charts/>
+                </Route>
+                <Route exact path="/scenarios/article/:id">
+                    <Articles />
                 </Route>
                 <Route path="/scenarios/:scenarioId">
                     <Scenarios/>
