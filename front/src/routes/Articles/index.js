@@ -6,6 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
+import TableContainer from '@material-ui/core/TableContainer';
 
 function Articles() {
     let rows = [
@@ -34,7 +35,7 @@ function Articles() {
     return (
         <Box>
             <Typography variant="h5" gutterBottom>Основные социально-экономические показатели</Typography>
-            <Box>
+            <TableContainer style={{ border: '1px solid rgba(224, 224, 224, 1)' }}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -61,7 +62,7 @@ function Articles() {
                         ))}
                     </TableBody>
                 </Table>
-            </Box>
+            </TableContainer>
         </Box>
     );
 }
