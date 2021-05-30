@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
@@ -11,28 +12,26 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 function Articles() {
-    let rows = [
-        {
-            name: 'Численность населения2) (на конец года), млн. человек',
-            data: [143.0]
-        },
-        {
-            name: 'в том числе в возрасте:',
-            data: ['']
-        },
-        {
-            name: 'моложе трудоспособного - всего',
-            data: [23.5]
-        },
-        {
-            name: 'мужчины',
-            data: [12.0]
-        },
-        {
-            name: 'женщины',
-            data: [11.5]
+    const [val, setVal] = useState({ years: [], data: [] });
+
+    useEffect( () => {
+        async function getData() {
+            const response = await axios.get('/api/articles');
+            setVal(response.data.data);
         }
-    ];
+
+        getData();
+    }, []);
+
+    useEffect(() => {
+        async function postData() {
+            const response = await axios.post('/api/articles');
+        }
+
+        // postData();
+    });
+
+    console.log(val);
 
     return (
         <Box>
@@ -41,19 +40,28 @@ function Articles() {
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell>2011</TableCell>
+                            <TableCell>Год</TableCell>
+                            {val.years.map(year => (
+                                <TableCell key={year} align="right">{year}</TableCell>
+                            ))}
                         </TableRow>
                     </TableHead>
+
                     <TableBody>
-                        {rows.map((row) => (
+                        {val.data.map((row) => (
                             <TableRow key={row.name}>
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
                                 {row.data.map((val, i) => (
-                                    <TableCell key={i} component="th" scope="row">
-                                        {val}
+                                    <TableCell key={i} component="th" scope="row" align="right">
+                                        {
+                                            val != null 
+                                                ? val.result != null
+                                                    ? val.result.toFixed(2)
+                                                    : val.toFixed(2)
+                                                : val
+                                        }
                                     </TableCell>
                                 ))}
                             </TableRow>

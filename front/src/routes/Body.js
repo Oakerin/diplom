@@ -8,7 +8,7 @@ import Model from './Model';
 
 function Body() {
     return (
-        <Paper style={{width: '100%', padding: 16}}>
+        <Paper style={{ width: '100%', padding: 16, overflow: 'hidden' }}>
             <Switch>
                 <Route path="/charts">
                     <Charts/>
