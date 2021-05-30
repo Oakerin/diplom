@@ -89,8 +89,7 @@ function Charts() {
                             </TableContainer>
                         </Box>
                     )
-                })
-                }
+                })}
             </Box>
         </Box>
     );
