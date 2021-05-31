@@ -25,7 +25,7 @@ function Charts() {
 
     return (
         <Box>
-            <Typography variant="h5" gutterBottom>Отчётные показатели экономики России</Typography>
+            <Typography variant="h5" style={{ marginBottom: 32 }}>Отчётные показатели экономики России</Typography>
             <Box display="flex" flexDirection="column" alignItems="center">
                 {val.map((v) => {
                     const labels = v.x.slice(13);
@@ -46,7 +46,8 @@ function Charts() {
                     };
 
                     return (
-                        <Box marginBottom="32px">
+                        <Box marginBottom="64px">
+                            <Typography gutterBottom>{v.title}</Typography>
                             <div key={v.title} style={{width: 900 }}>
                                 <Line
                                     data={data}
@@ -65,7 +66,7 @@ function Charts() {
                                 />
                             </div>
                             
-                            <TableContainer component={Paper}>
+                            <TableContainer component={Paper} style={{ maxHeight: '400px', overflow: 'auto' }}>
                                 <Table size="small">
                                     <TableHead>
                                     <TableRow>
