@@ -23,13 +23,9 @@ function Articles() {
         getData();
     }, []);
 
-    useEffect(() => {
-        async function postData() {
-            const response = await axios.post('/api/articles');
-        }
-
-        // postData();
-    });
+    const postData = () => {
+        axios.post('/api/articles');
+    };
 
     console.log(val);
 
@@ -74,12 +70,11 @@ function Articles() {
                 <Box display="flex" flexDirection="column" marginTop="32px">
                     <Typography variant="h5">Добавление социально-экономических показателей</Typography>
                     <TextField margin="normal" label="Год"/>
-                    <TextField margin="normal" label="Численность населения"/>
-                    <TextField margin="normal" label="моложе трудоспособного - всего"/>
-                    <TextField margin="normal" label="мужчины"/>
-                    <TextField margin="normal" label="женщины"/>
+                    {val.data.map(row => (
+                        <TextField key={row.name} margin="normal" label={row.name} />
+                    ))}
                     <Box textAlign="right">
-                        <Button variant="contained" color="primary">Сохранить</Button>
+                        <Button variant="contained" color="primary" onClick={postData}>Сохранить</Button>
                     </Box>
                 </Box>
             </form>

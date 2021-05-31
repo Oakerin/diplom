@@ -36,7 +36,7 @@ router.post('/', async function (req, res, next) {
     const workbook = new Excel.Workbook();
     const worksheet = await workbook.xlsx.readFile(__dirname + fileName);
 
-    worksheet.worksheets[0].addСolumn([3]);
+    worksheet.worksheets[0].addRow([3]);
 
     workbook.xlsx.writeFile(__dirname + fileName).then(() => {
         res.send(JSON.stringify({}));
