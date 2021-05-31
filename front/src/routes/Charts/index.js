@@ -59,7 +59,11 @@ function Charts() {
                                             y: {
                                                 title: {color: '#6495ED', display: true, text: v.yTitle}
                                             }
-                                        }
+                                        },
+                                        interaction: {
+                                            mode: 'index',
+                                            intersect: false
+                                        },
                                     }}
                                     width={400}
                                     height={150}
