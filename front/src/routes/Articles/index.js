@@ -10,29 +10,56 @@ import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 function Articles() {
-    const [form, setForm] = useState({ year: null });
+    const [form, setForm] = useState({ year: '' });
     const [val, setVal] = useState({ years: [], data: [] });
 
     useEffect( () => {
         async function getData() {
             const response = await axios.get('/api/articles');
+            setForm({ ...form, ...response.data.data.data.reduce((acc, val, i) => ({ ...acc, [''+i]: '' }), {}) });
             setVal(response.data.data);
+
+            console.log({ ...form, ...response.data.data.data.reduce((acc, val, i) => ({ ...acc, [''+i]: '' }), {}) });
         }
 
         getData();
     }, []);
 
-    const postData = () => {
-        axios.post('/api/articles', form);
+    const postData = async () => {
+        console.log(form);
+        await axios.post('/api/articles', form);
+        const response = await axios.get('/api/articles');
+        setVal(response.data.data);
     };
+
+    const reverseYears = val.years.reverse();
 
     const handleFieldChange = (e) => {
-        setForm({ ...form, [e.target.name]: +e.target.value });
-    };
+        const value = +e.target.value;
+        console.log(e.target.name, value);
 
-    console.log(val);
+        if (e.target.name === 'year') {
+            const index = reverseYears.findIndex((v) => v === value);
+            
+            console.log(val.data.reduce((acc, val, i) => ({ ...acc, [''+i]: val.data[index] || '' }), {}));
+
+            console.log(val.data);
+            setForm({ ...form, year: value, ...val.data.reduce((acc, val, i) => ({ 
+                ...acc, 
+                [''+i]: val.data[index] || '' 
+            }), {})  });
+        } else {
+            setForm({ ...form, [e.target.name]: value });
+        }
+
+        console.log({ ...form, [e.target.name]: value })
+    };
 
     return (
         <Box>
@@ -59,8 +86,8 @@ function Articles() {
                                         {
                                             val != null 
                                                 ? val.result != null
-                                                    ? val.result.toFixed(2)
-                                                    : val.toFixed(2)
+                                                    ? val.result.toFixed ? val.result.toFixed(2) : val.result
+                                                    : val.toFixed ? val.toFixed(2) : val
                                                 : val
                                         }
                                     </TableCell>
@@ -74,9 +101,31 @@ function Articles() {
             <form>
                 <Box display="flex" flexDirection="column" marginTop="32px">
                     <Typography variant="h5">Добавление социально-экономических показателей</Typography>
-                    <TextField name="year" margin="normal" label="Год" type="number" onChange={handleFieldChange}/>
-                    {val.data.map(row => (
-                        <TextField key={row.name} margin="normal" label={row.name} />
+                    <FormControl>
+                        <InputLabel id="demo-simple-select-label">Год</InputLabel>
+                        <Select
+                            name="year"
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={form.year}
+                            onChange={handleFieldChange}
+                        >
+                            <MenuItem value="">--</MenuItem>
+                            {[...val.years].reverse().map(year => (
+                                <MenuItem key={year} value={year}>{year}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    {val.data.map((row, i) => (
+                        <TextField 
+                            value={form[''+i].result != null ? form[''+i].result : form[''+i]} 
+                            name={''+i} 
+                            key={row.name} 
+                            margin="normal" 
+                            label={row.name} 
+                            onChange={handleFieldChange} 
+                        />
                     ))}
                     <Box textAlign="right">
                         <Button variant="contained" color="primary" onClick={postData}>Сохранить</Button>
