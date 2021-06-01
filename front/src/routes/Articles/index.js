@@ -14,10 +14,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Articles() {
     const [form, setForm] = useState({ year: '' });
     const [val, setVal] = useState({ years: [], data: [] });
+    const [loading, setLoading] = useState(false);
 
     useEffect( () => {
         async function getData() {
@@ -32,8 +34,11 @@ function Articles() {
     }, []);
 
     const postData = async () => {
+        setLoading(true);
+
         console.log(form);
         await axios.post('/api/articles', form);
+        setLoading(false);
         const response = await axios.get('/api/articles');
         setVal(response.data.data);
     };
@@ -128,7 +133,15 @@ function Articles() {
                         />
                     ))}
                     <Box textAlign="right">
-                        <Button variant="contained" color="primary" onClick={postData}>Сохранить</Button>
+                        <Button 
+                            disabled={loading} 
+                            variant="contained" 
+                            color="primary" 
+                            onClick={postData}
+
+                        >
+                            Сохранить {loading && <CircularProgress style={{marginLeft: 8 }} size="24px" />}
+                        </Button>
                     </Box>
                 </Box>
             </form>
