@@ -5,7 +5,7 @@ const Excel = require('exceljs');
 const fileName = '/diplom_28-05.xlsx';
 
 const rows = [
-    86, 91, 93, 96, 87, 88, 65, 61, 60, 69, 82, 83, 79, 63, 52
+    86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52
 ];
 
 router.get('/', function (req, res, next) {
@@ -16,9 +16,6 @@ router.get('/', function (req, res, next) {
         // года
         const years = worksheet.worksheets[1].getRow(50).values.slice(16,67).reverse(); // 16
         const column = 'K';
-        const rows = [
-            86, 91, 93, 96, 87, 88, 65, 61, 60, 69, 82, 83, 79, 63, 52
-        ];
 
         return {
             years,
