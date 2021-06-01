@@ -805,13 +805,20 @@ router.get('/', function (req, res, next) {
 
 /* POST users listing. */
 router.post('/', async function (req, res, next) {
+    const firstYearCell = {
+        row: 50,
+        column: 'P',
+        value: 1990
+    }
+    // const fileName = '/test.xlsx';
+
     const workbook = new Excel.Workbook();
     const worksheet = await workbook.xlsx.readFile(__dirname + fileName);
 
-    worksheet.worksheets[0].addRow([3, 'Sam']);
+    worksheet.worksheets[1].getCell('AS86').value = 146;
 
     workbook.xlsx.writeFile(__dirname + fileName).then(() => {
-        res.send(JSON.stringify({}));
+        res.send(JSON.stringify({ status: 200 }));
         console.log('Finished...');
     });
 });

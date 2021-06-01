@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 function Articles() {
+    const [form, setForm] = useState({ year: null });
     const [val, setVal] = useState({ years: [], data: [] });
 
     useEffect( () => {
@@ -24,7 +25,11 @@ function Articles() {
     }, []);
 
     const postData = () => {
-        axios.post('/api/articles');
+        axios.post('/api/articles', form);
+    };
+
+    const handleFieldChange = (e) => {
+        setForm({ ...form, [e.target.name]: +e.target.value });
     };
 
     console.log(val);
@@ -69,7 +74,7 @@ function Articles() {
             <form>
                 <Box display="flex" flexDirection="column" marginTop="32px">
                     <Typography variant="h5">Добавление социально-экономических показателей</Typography>
-                    <TextField margin="normal" label="Год"/>
+                    <TextField name="year" margin="normal" label="Год" type="number" onChange={handleFieldChange}/>
                     {val.data.map(row => (
                         <TextField key={row.name} margin="normal" label={row.name} />
                     ))}
