@@ -111,16 +111,10 @@ function Scenarios() {
     return (
         <Box>
             <Typography variant="h5" gutterBottom>Архив исходных данных</Typography>
-            {links.map((link, i) => (
-                <Accordion key={i} expanded={+scenarioId === i} onChange={handleChange(i)}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon/>}
-                        aria-controls="panel1bh-content"
-                        id="panel1bh-header"
-                    >
-                        <Typography>{link.name}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
+            {links.map((link, i) => {
+                return (
+                    <Box marginBottom="16px">
+                        <Typography varint="subtitle1" gutterBottom>{link.name}</Typography>
                         <Box display="flex" flexDirection="column">
                             {link.links.map(link => {
                                 return (
@@ -131,9 +125,9 @@ function Scenarios() {
                                 )
                             })}
                         </Box>
-                    </AccordionDetails>
-                </Accordion>
-            ))}
+                    </Box>
+                );
+            })}
         </Box>
     );
 }
