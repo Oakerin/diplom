@@ -37,7 +37,14 @@ function Articles() {
         setLoading(true);
 
         console.log(form);
-        await axios.post('/api/articles', form);
+
+        let formData = Object.keys(form).reduce((acc, key) => {
+            return { ...acc, [key]: form[key] ? +form[key] : null };
+        }, {})
+
+        console.log(formData);
+
+        await axios.post('/api/articles', formData);
         setLoading(false);
         const response = await axios.get('/api/articles');
         setVal(response.data.data);
@@ -46,7 +53,7 @@ function Articles() {
     const reverseYears = val.years.reverse();
 
     const handleFieldChange = (e) => {
-        const value = +e.target.value;
+        const value = e.target.value;
         console.log(e.target.name, value);
 
         if (e.target.name === 'year') {
@@ -124,6 +131,7 @@ function Articles() {
 
                     {val.data.map((row, i) => (
                         <TextField 
+                            type="number"
                             value={form[''+i].result != null ? form[''+i].result : form[''+i]} 
                             name={''+i} 
                             key={row.name} 
