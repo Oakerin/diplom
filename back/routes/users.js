@@ -23,6 +23,7 @@ router.get('/', function (req, res, next) {
         return [
             {
                 title: 'ДИНАМИКА ГОДОВЫХ ТЕМПОВ ВАЛОВОГО ВНУТРЕННЕГО ПРОДУКТА',
+                groupName: 'Траекторные показатели',
                 x: worksheet.worksheets[0].getColumn('G').values,
                 y: getData(worksheet.worksheets[0].getColumn('H').values),
                 data: {
@@ -178,9 +179,9 @@ router.get('/', function (req, res, next) {
                 xTitle: 'Год',
                 yTitle: 'kS'
             },
-
             {
                 title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ ИНВЕСТИЦИЙ В ОСНОВНОЙ КАПИТАЛ',
+                groupName: 'Занятость и оплата труда',
                 x: worksheet.worksheets[0].getColumn('EG').values,
                 y: getData(worksheet.worksheets[0].getColumn('EH').values),
                 data: {
@@ -330,6 +331,7 @@ router.get('/', function (req, res, next) {
 
             {
                 title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ДОМАШНИХ ХОЗЯЙСТВ',
+                groupName: 'Динамика основных фондов и производственных мощностей',
                 x: worksheet.worksheets[0].getColumn('JL').values,
                 y: getData(worksheet.worksheets[0].getColumn('JM').values),
                 data: {
@@ -499,6 +501,7 @@ router.get('/', function (req, res, next) {
 
             {
                 title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ ГОСУДАРСТВА',
+                groupName: 'Рабочие гипотезы',
                 x: worksheet.worksheets[0].getColumn('OU').values,
                 y: getData(worksheet.worksheets[0].getColumn('OV').values),
                 data: {
@@ -643,6 +646,7 @@ router.get('/', function (req, res, next) {
 
             {
                 title: 'ДИНАМИКА  ГОДОВЫХ ТЕМПОВ КОНЕЧНОГО ПОТРЕБЛЕНИЯ НКО',
+                groupName: 'Сценарии исходных данных',
                 x: worksheet.worksheets[0].getColumn('TZ').values,
                 y: getData(worksheet.worksheets[0].getColumn('UA').values),
                 data: {

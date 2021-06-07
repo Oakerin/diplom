@@ -27,7 +27,7 @@ function Charts() {
         <Box>
             <Typography variant="h5" style={{ marginBottom: 32 }}>Отчётные показатели экономики России</Typography>
             <Box display="flex" flexDirection="column" alignItems="center">
-                {val.map((v) => {
+                {val.map((v, i) => {
                     const labels = v.x.slice(13);
                     const data = {
                         labels: v.data ? v.data.labels : labels,
@@ -47,7 +47,10 @@ function Charts() {
 
                     return (
                         <Box marginBottom="64px">
-                            <Typography gutterBottom>{v.title}</Typography>
+                            {v.groupName != null && (
+                                <Typography variant="h5" gutterBottom>{v.groupName}</Typography>
+                            )}
+                            <Typography variant="caption" gutterBottom>{v.title}</Typography>
                             <div key={v.title} style={{width: 900 }}>
                                 <Line
                                     data={data}
