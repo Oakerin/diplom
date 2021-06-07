@@ -6,6 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import DotIcon from '@material-ui/icons/FiberManualRecord';
 import { Link as RouteLink, useParams, useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
@@ -13,14 +14,36 @@ const links = [
     {
         name: 'Основные социально-экономические характеристики Российской Федерации',
         links: [
-            {name: 'Основные социально-экономические показатели', to: '/1'},
+            {
+                name: 'Основные социально-экономические показатели',
+                to: '/1'
+            },
             {
                 name: 'Среднегодовые темпы прироста (снижения) основных социально-экономических показателей в 1971-2010 гг.',
-                to: '/2'
+                to: null,
+                links: [
+                    {
+                        name: 'Abra-kadabra',
+                        to: '/1-2-1'
+                    },
+                    {
+                        name: 'Qwerty-loop',
+                        to: '/1-2-2'
+                    }
+                ]
             },
-            {name: 'Темпы роста (снижения) основных социально-экономических показателей', to: '/3'},
-            {name: 'Внешний долг Российской Федерации', to: '/4'},
-            {name: 'Темпы роста (снижения) производительности труда по видам экономической деятельности', to: '/5'}
+            {
+                name: 'Темпы роста (снижения) основных социально-экономических показателей', 
+                to: '/3'
+            },
+            {
+                name: 'Внешний долг Российской Федерации', 
+                to: '/4'
+            },
+            {
+                name: 'Темпы роста (снижения) производительности труда по видам экономической деятельности', 
+                to: '/5'
+            }
         ]
     },
     {
@@ -119,8 +142,32 @@ function Scenarios() {
                             {link.links.map(link => {
                                 return (
                                     <Box key={link.name} display="flex" alignItems="flex-start">
-                                        <NavigateNextIcon fontSize="small"/>
-                                        <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
+                                        {link.links != null 
+                                            ?   (
+                                                    <Box>
+                                                        <Box display="flex" alignItems="flex-start">
+                                                            <NavigateNextIcon fontSize="small"/>
+                                                            <Typography style={{ cursor: 'pointer' }} variant="body2">{link.name}</Typography>
+                                                        </Box>
+                                                        <Box marginLeft="16px" display="flex" flexDirection="column">
+                                                            {link.links.map(link => {
+                                                                return (
+                                                                    <Box key={link.name} display="flex" alignItems="center">
+                                                                        <DotIcon style={{ fontSize: '8px', marginRight: '4px' }} />
+                                                                        <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
+                                                                    </Box>
+                                                                )
+                                                            })}
+                                                        </Box>
+                                                    </Box>
+                                                )
+                                            :   (
+                                                    <>
+                                                        <NavigateNextIcon fontSize="small"/>
+                                                        <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
+                                                    </>
+                                                )   
+                                        }
                                     </Box>
                                 )
                             })}
