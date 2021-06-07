@@ -31,9 +31,15 @@ const routes = [
         }
     },
     {
-        name: 'Архив сценариев исходных данных опорной траектории',
+        name: 'Архив исходных данных',
         to: function () {
             return {pathname: '/scenarios/index'}
+        }
+    },
+    {
+        name: 'Архив сценариев исходных данных опорной траектории',
+        to: function () {
+            return {pathname: ''}
         }
     },
     {
