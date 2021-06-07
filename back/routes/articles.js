@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
         const worksheet = await workbook.xlsx.readFile(__dirname + fileName);
 
         // года
-        const years = worksheet.worksheets[1].getRow(50).values.slice(16,67).reverse(); // 16
+        const years = worksheet.worksheets[1].getRow(50).values.slice(36,67); // 16
         const column = 'K';
 
         return {
@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
             data: rows.map(row => {
                 return {
                     name: worksheet.worksheets[1].getCell(column + row).value,
-                    data: worksheet.worksheets[1].getRow(row).values.slice(16,67).reverse() // численность населения
+                    data: worksheet.worksheets[1].getRow(row).values.slice(36,67) // численность населения
                 }
             })
         };

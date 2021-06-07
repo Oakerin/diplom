@@ -50,14 +50,12 @@ function Articles() {
         setVal(response.data.data);
     };
 
-    const reverseYears = val.years.reverse();
-
     const handleFieldChange = (e) => {
         const value = e.target.value;
         console.log(e.target.name, value);
 
         if (e.target.name === 'year') {
-            const index = reverseYears.findIndex((v) => v === value);
+            const index = val.years.findIndex((v) => v === value);
             
             console.log(val.data.reduce((acc, val, i) => ({ ...acc, [''+i]: val.data[index] || '' }), {}));
 
@@ -123,7 +121,7 @@ function Articles() {
                             onChange={handleFieldChange}
                         >
                             <MenuItem value="">--</MenuItem>
-                            {[...val.years].reverse().map(year => (
+                            {[...val.years].map(year => (
                                 <MenuItem key={year} value={year}>{year}</MenuItem>
                             ))}
                         </Select>
