@@ -110,7 +110,7 @@ function Scenarios() {
 
     return (
         <Box>
-            <Typography variant="h5" gutterBottom>Архив сценариев исходных данных опорной траектории</Typography>
+            <Typography variant="h5" gutterBottom>Архив исходных данных</Typography>
             {links.map((link, i) => (
                 <Accordion key={i} expanded={+scenarioId === i} onChange={handleChange(i)}>
                     <AccordionSummary
