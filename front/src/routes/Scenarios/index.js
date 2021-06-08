@@ -6,7 +6,7 @@ import DotIcon from '@material-ui/icons/FiberManualRecord';
 import { Link as RouteLink, useParams, useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
-const links = [
+export const links = [
     {
         name: 'ОБЩИЕ МАКРОЭКОНОМИЧЕСКИЕ ПОКАЗАТЕЛИ',
         links: [

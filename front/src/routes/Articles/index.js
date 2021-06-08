@@ -16,6 +16,27 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useParams } from "react-router-dom";
+import { links } from '../Scenarios';
+
+let foo = {};
+
+function getNames(data = []) {
+    return data.reduce((acc, val) => {
+       let data = {};
+
+       if (val.links != null) {
+          data = getNames(val.links);
+       }
+
+       if (val.to != null) {
+          data = { ...data, [val.to]: val.name }
+       }
+
+       return { ...acc, ...data }
+    }, foo);
+}
+
+const titles = getNames(links);
 
 function Articles() {
     let { id } = useParams();
@@ -89,7 +110,7 @@ function Articles() {
 
     return (
         <Box>
-            <Typography variant="h5" gutterBottom>Основные социально-экономические показатели</Typography>
+            <Typography variant="h5" gutterBottom>{titles['/'+id]}</Typography>
             <TableContainer style={{border: '1px solid rgba(224, 224, 224, 1)'}}>
                 <Table aria-label="simple table">
                     <TableHead>
@@ -128,7 +149,7 @@ function Articles() {
 
             <form>
                 <Box display="flex" flexDirection="column" marginTop="32px">
-                    <Typography variant="h5">Добавление социально-экономических показателей</Typography>
+                    <Typography variant="h5">Добавить данные</Typography>
                     <FormControl>
                         <InputLabel id="demo-simple-select-label">Год</InputLabel>
                         <Select
