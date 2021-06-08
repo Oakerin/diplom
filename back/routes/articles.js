@@ -4,6 +4,13 @@ const Excel = require('exceljs');
 
 const fileName = '/diplom_28-05.xlsx';
 
+const firstYearCell = {
+    row: 50,
+    column: 'P',
+    columnKey: 36,
+    value: 2010
+}
+
 const rows = [
     86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52
 ];
@@ -14,7 +21,7 @@ router.get('/', function (req, res, next) {
         const worksheet = await workbook.xlsx.readFile(__dirname + fileName);
 
         // года
-        const years = worksheet.worksheets[1].getRow(50).values.slice(36,67); // 16
+        const years = worksheet.worksheets[1].getRow(50).values.slice(firstYearCell.columnKey,67); // 16
         const column = 'K';
 
         return {
@@ -22,7 +29,7 @@ router.get('/', function (req, res, next) {
             data: rows.map(row => {
                 return {
                     name: worksheet.worksheets[1].getCell(column + row).value,
-                    data: worksheet.worksheets[1].getRow(row).values.slice(36,67) // численность населения
+                    data: worksheet.worksheets[1].getRow(row).values.slice(firstYearCell.columnKey,67) // численность населения
                 }
             })
         };
@@ -35,13 +42,6 @@ router.get('/', function (req, res, next) {
 
 /* POST users listing. */
 router.post('/', async function (req, res, next) {
-
-    const firstYearCell = {
-        row: 50,
-        column: 'P',
-        columnKey: 16,
-        value: 1990
-    }
     // const fileName = '/test.xlsx';
 
     const workbook = new Excel.Workbook();
@@ -49,8 +49,9 @@ router.post('/', async function (req, res, next) {
 
     const colNum = req.body.year - firstYearCell.value + firstYearCell.columnKey;
     
-    // console.log(colNum);
-    // console.log(worksheet.worksheets[1].getCell('86', colNum).value);
+    console.log(colNum);
+    console.log(req.body);
+    console.log(worksheet.worksheets[1].getCell('86', colNum).value);
 
     rows.forEach((row, i) => {
         worksheet.worksheets[1].getCell(''+row, colNum).value = req.body[''+i];
