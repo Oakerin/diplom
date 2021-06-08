@@ -26,9 +26,11 @@ function Articles() {
     useEffect( () => {
         async function getData(id) {
             const response = await axios.get('/api/articles', { params: { id }});
+            
             console.log(response);
-
             setForm({ ...form, ...response.data.data.data.reduce((acc, val, i) => ({ ...acc, [''+i]: '' }), {}) });
+
+            console.log(response.data.data);
             setVal(response.data.data);
 
             console.log({ ...form, ...response.data.data.data.reduce((acc, val, i) => ({ ...acc, [''+i]: '' }), {}) });
@@ -43,6 +45,10 @@ function Articles() {
         console.log(form);
 
         let formData = Object.keys(form).reduce((acc, key) => {
+            if (form[key] && form[key].result != null) {
+                return { ...acc };
+            }
+
             return { ...acc, [key]: form[key] ? +form[key] : null };
         }, {})
 
@@ -77,7 +83,9 @@ function Articles() {
         console.log({ ...form, [e.target.name]: value })
     };
 
-    console.log(form);
+    console.log('val', val);
+    console.log('form', form);
+
 
     return (
         <Box>
@@ -104,7 +112,9 @@ function Articles() {
                                         {
                                             val != null 
                                                 ? val.result != null
-                                                    ? val.result.toFixed ? val.result.toFixed(2) : val.result
+                                                    ? val.result.error == null 
+                                                      ? val.result.toFixed ? val.result.toFixed(2) : val.result
+                                                      : null
                                                     : val.toFixed ? val.toFixed(2) : val
                                                 : val
                                         }
@@ -135,7 +145,11 @@ function Articles() {
                         </Select>
                     </FormControl>
 
-                    {val.data.map((row, i) => {
+                    {form.year && val.data.map((row, i) => {
+                        if (form[''+i].result != null) {
+                            return null;
+                        }
+
                         return(
                             <TextField 
                                 type="number"
@@ -148,7 +162,8 @@ function Articles() {
                             />
                         )}
                     )}
-                    <Box textAlign="right">
+
+                    <Box textAlign="right" marginTop="16px">
                         <Button 
                             disabled={loading} 
                             variant="contained" 

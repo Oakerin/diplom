@@ -14,7 +14,7 @@ const firstYearCell = {
 
 const rows = [86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52];
 const rowsData = {
-    '1': [86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52],
+    '1': [116, 86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52],
     '1-2-1': [86]
 };
 
@@ -67,7 +67,11 @@ router.post('/', async function (req, res, next) {
     console.log(worksheet.worksheets[1].getCell('86', colNum).value);
 
     getRowsById(req.body.id).forEach((row, i) => {
-        worksheet.worksheets[1].getCell(''+row, colNum).value = req.body[''+i];
+        const cellVal = worksheet.worksheets[1].getCell(''+row, colNum).value;
+        // console.log(cellVal);
+        if (cellVal.result == null) {
+            worksheet.worksheets[1].getCell(''+row, colNum).value = req.body[''+i];
+        }
     });
 
     workbook.xlsx.writeFile(__dirname + fileName).then(() => {
