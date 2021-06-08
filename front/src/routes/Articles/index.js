@@ -15,23 +15,27 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useParams } from "react-router-dom";
 
 function Articles() {
+    let { id } = useParams();
     const [form, setForm] = useState({ year: '' });
     const [val, setVal] = useState({ years: [], data: [] });
     const [loading, setLoading] = useState(false);
 
     useEffect( () => {
-        async function getData() {
-            const response = await axios.get('/api/articles');
+        async function getData(id) {
+            const response = await axios.get('/api/articles', { params: { id }});
+            console.log(response);
+
             setForm({ ...form, ...response.data.data.data.reduce((acc, val, i) => ({ ...acc, [''+i]: '' }), {}) });
             setVal(response.data.data);
 
             console.log({ ...form, ...response.data.data.data.reduce((acc, val, i) => ({ ...acc, [''+i]: '' }), {}) });
         }
 
-        getData();
-    }, []);
+        getData(id);
+    }, [id]);
 
     const postData = async () => {
         setLoading(true);
@@ -42,11 +46,13 @@ function Articles() {
             return { ...acc, [key]: form[key] ? +form[key] : null };
         }, {})
 
+        formData = { ...formData, id };
+
         console.log(formData);
 
         await axios.post('/api/articles', formData);
         setLoading(false);
-        const response = await axios.get('/api/articles');
+        const response = await axios.get('/api/articles', { params: { id }});
         setVal(response.data.data);
     };
 
@@ -70,6 +76,8 @@ function Articles() {
 
         console.log({ ...form, [e.target.name]: value })
     };
+
+    console.log(form);
 
     return (
         <Box>
@@ -127,17 +135,19 @@ function Articles() {
                         </Select>
                     </FormControl>
 
-                    {val.data.map((row, i) => (
-                        <TextField 
-                            type="number"
-                            value={form[''+i].result != null ? form[''+i].result : form[''+i]} 
-                            name={''+i} 
-                            key={row.name} 
-                            margin="normal" 
-                            label={row.name} 
-                            onChange={handleFieldChange} 
-                        />
-                    ))}
+                    {val.data.map((row, i) => {
+                        return(
+                            <TextField 
+                                type="number"
+                                value={form[''+i].result != null ? form[''+i].result : form[''+i]} 
+                                name={''+i} 
+                                key={row.name} 
+                                margin="normal" 
+                                label={row.name} 
+                                onChange={handleFieldChange} 
+                            />
+                        )}
+                    )}
                     <Box textAlign="right">
                         <Button 
                             disabled={loading} 

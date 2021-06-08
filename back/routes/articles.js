@@ -11,11 +11,24 @@ const firstYearCell = {
     value: 2010
 }
 
-const rows = [
-    86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52
-];
+
+const rows = [86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52];
+const rowsData = {
+    '1': [86, 91, 93, 96, 87, 88, 65, 61, 69, 82, 83, 79, 52],
+    '1-2-1': [86]
+};
+
+function getRowsById(id) {
+    if (rowsData[id] == null) {
+        return rows;
+    }
+
+    return rowsData[id];
+}
 
 router.get('/', function (req, res, next) {
+    console.log(req.query.id);
+
     async function readFile() {
         const workbook = new Excel.Workbook();
         const worksheet = await workbook.xlsx.readFile(__dirname + fileName);
@@ -26,7 +39,7 @@ router.get('/', function (req, res, next) {
 
         return {
             years,
-            data: rows.map(row => {
+            data: getRowsById(req.query.id).map(row => {
                 return {
                     name: worksheet.worksheets[1].getCell(column + row).value,
                     data: worksheet.worksheets[1].getRow(row).values.slice(firstYearCell.columnKey,67) // численность населения
@@ -53,7 +66,7 @@ router.post('/', async function (req, res, next) {
     console.log(req.body);
     console.log(worksheet.worksheets[1].getCell('86', colNum).value);
 
-    rows.forEach((row, i) => {
+    getRowsById(req.body.id).forEach((row, i) => {
         worksheet.worksheets[1].getCell(''+row, colNum).value = req.body[''+i];
     });
 
