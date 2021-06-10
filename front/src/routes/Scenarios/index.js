@@ -5,6 +5,10 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import DotIcon from '@material-ui/icons/FiberManualRecord';
 import { Link as RouteLink, useParams, useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 export const links = [
     {
@@ -242,57 +246,67 @@ export const links = [
 ];
 
 function Scenarios() {
-    const { scenarioId } = useParams();
+    const [expanded, setExpanded] = React.useState(false);
     const history = useHistory();
 
-    const handleChange = (index) => (event, isExpanded) => {
-        history.push(`/scenarios/${isExpanded ? index : 'list'}`);
+    const handleExpand = (panel) => (event, isExpanded) => {
+      setExpanded(isExpanded ? panel : false);
     };
 
     return (
         <Box>
             <Typography variant="h5" gutterBottom>Архив исходных данных</Typography>
+
             {links.map((link, i) => {
                 return (
-                    <Box marginBottom="16px">
-                        <Typography varint="subtitle1" gutterBottom>{link.name}</Typography>
-                        <Box display="flex" flexDirection="column">
-                            {link.links.map(link => {
-                                return (
-                                    <Box key={link.name} display="flex" alignItems="flex-start">
-                                        {link.links != null 
-                                            ?   (
-                                                    <Box>
-                                                        <Box display="flex" alignItems="flex-start">
+                    <Accordion 
+                        key={i}
+                        expanded={expanded === `panel${i}`} 
+                        onChange={handleExpand(`panel${i}`)}
+                    >
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>{link.name}</Typography>
+                        </AccordionSummary>
+
+                        <AccordionDetails>
+                            <Box display="flex" flexDirection="column">
+                                {link.links.map(link => {
+                                    return (
+                                        <Box key={link.name} display="flex" alignItems="flex-start">
+                                            {link.links != null 
+                                                ?   (
+                                                        <Box>
+                                                            <Box display="flex" alignItems="flex-start">
+                                                                <NavigateNextIcon fontSize="small"/>
+                                                                <Typography style={{ cursor: 'pointer' }} variant="body2">{link.name}</Typography>
+                                                            </Box>
+                                                            <Box marginLeft="16px" display="flex" flexDirection="column">
+                                                                {link.links.map(link => {
+                                                                    return (
+                                                                        <Box key={link.name} display="flex" alignItems="center">
+                                                                            <DotIcon style={{ fontSize: '8px', marginRight: '4px' }} />
+                                                                            <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
+                                                                        </Box>
+                                                                    )
+                                                                })}
+                                                            </Box>
+                                                        </Box>
+                                                    )
+                                                :   (
+                                                        <>
                                                             <NavigateNextIcon fontSize="small"/>
-                                                            <Typography style={{ cursor: 'pointer' }} variant="body2">{link.name}</Typography>
-                                                        </Box>
-                                                        <Box marginLeft="16px" display="flex" flexDirection="column">
-                                                            {link.links.map(link => {
-                                                                return (
-                                                                    <Box key={link.name} display="flex" alignItems="center">
-                                                                        <DotIcon style={{ fontSize: '8px', marginRight: '4px' }} />
-                                                                        <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
-                                                                    </Box>
-                                                                )
-                                                            })}
-                                                        </Box>
-                                                    </Box>
-                                                )
-                                            :   (
-                                                    <>
-                                                        <NavigateNextIcon fontSize="small"/>
-                                                        <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
-                                                    </>
-                                                )   
-                                        }
-                                    </Box>
-                                )
-                            })}
-                        </Box>
-                    </Box>
-                );
-            })}
+                                                            <Link component={RouteLink} to={`/scenarios/article${link.to}`}>{link.name}</Link>
+                                                        </>
+                                                    )   
+                                            }
+                                        </Box>
+                                    )
+                                })}
+                            </Box>
+                        </AccordionDetails>
+                    </Accordion>
+                )}
+            )}
         </Box>
     );
 }
