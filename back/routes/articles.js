@@ -80,22 +80,22 @@ router.post('/', async function (req, res, next) {
     const worksheet = await workbook.xlsx.readFile(__dirname + fileName);
 
     const colNum = req.body.year - firstYearCell.value + firstYearCell.columnKey;
-    
+
     console.log(colNum);
     console.log(req.body);
     console.log(worksheet.worksheets[1].getCell('86', colNum).value);
 
     getRowsById(req.body.id).forEach((row, i) => {
         const cellVal = worksheet.worksheets[1].getCell(''+row, colNum).value;
-        // console.log(cellVal);
-        if (cellVal.result == null) {
+        console.log('cellVal', cellVal);
+        if (cellVal == null || cellVal.result == null) {
             worksheet.worksheets[1].getCell(''+row, colNum).value = req.body[''+i];
         }
     });
 
     workbook.xlsx.writeFile(__dirname + fileName).then(() => {
         res.send(JSON.stringify({ status: 200 }));
-        
+
         // console.log(req.body.year);
         console.log('Finished...');
     });
