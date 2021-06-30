@@ -367,7 +367,7 @@ router.get('/', function (req, res, next) {
                             borderColor: '#4169E1'
                         },
                         {
-                            label: 'Pd',
+                            label: 'Pd*',
                             data: getData(worksheet.worksheets[0].getColumn('KJ').values).slice(13),
                             borderColor: '#4169E1'
                         },
@@ -396,7 +396,7 @@ router.get('/', function (req, res, next) {
                             borderColor: '#4169E1'
                         },
                         {
-                            label: 'СЧЕТ (Прогноз)',
+                            label: 'СЧЕТ* (Прогноз)',
                             data: getData(worksheet.worksheets[0].getColumn('LG').values).slice(13),
                             borderColor: '#000000'
                         },
@@ -610,7 +610,7 @@ router.get('/', function (req, res, next) {
                         },
                         {
                             label: 'СЧЕТ (Прогноз)',
-                            data: getData(worksheet.worksheets[0].getColumn('RM').values).slice(13),
+                            data: getData(worksheet.worksheets[0].getColumn('SI').values).slice(13),
                             borderColor: '#000000'
                         },
                     ]
@@ -634,7 +634,7 @@ router.get('/', function (req, res, next) {
                         },
                         {
                             label: 'СЧЕТ (Прогноз)',
-                            data: getData(worksheet.worksheets[0].getColumn('RM').values).slice(13),
+                            data: getData(worksheet.worksheets[0].getColumn('TE').values).slice(13),
                             borderColor: '#000000'
                         },
                     ]
@@ -712,7 +712,7 @@ router.get('/', function (req, res, next) {
                         },
                         {
                             label: 'СЧЕТ (Прогноз)',
-                            data: getData(worksheet.worksheets[0].getColumn('UY').values).slice(13),
+                            data: getData(worksheet.worksheets[0].getColumn('VU').values).slice(13),
                             borderColor: '#000000'
                         },
                     ]
